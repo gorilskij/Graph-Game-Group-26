@@ -1,0 +1,13 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+
+echo "compiling"
+javac -Xlint:deprecation -Xlint:unchecked $(find ./* | grep .java) -d compiled
+
+if [ $? = 0 ]; then
+    echo "success"
+    cd compiled
+    java game.Main
+else
+    echo "error: compilation failed"
+fi
